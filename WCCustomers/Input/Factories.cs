@@ -4,13 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Input
+namespace Data
 {
-    public static class CustomerImportFactory
+    //todo: different factories for input, output, and logging?
+    public static class RepositoryFactory
     {
-        public static ICustomerImportRepository GetSAPImportRepository()
+        public static ICustomerInputRepository GetSAPImportRepository(string connectionString)
         {
-            return new SAPImportRepository();
+            return new SAPImportRepository(connectionString);
+        }
+
+        public static ICustomerOutputRepository GetWCSalesRepository()
+        {
+            return new WCSalesRepository();
+        }
+
+        public static ILoggingRepository GetLoggingRepository()
+        {
+            return new LoggingRepository();
         }
     }
 }

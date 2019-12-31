@@ -8,5 +8,6 @@ namespace Model
 {
     public class SAPCustomer
     {
+        public int? CustomerId { get; set; } //WC CustomerId. null when customer does not exist.
     }
 }

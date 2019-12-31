@@ -7,8 +7,8 @@
     <ProjectGuid>{7B5FF160-38DA-403E-ACF5-F9CDAB89655C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Input</RootNamespace>
-    <AssemblyName>Input</AssemblyName>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Factories.cs" />
     <Compile Include="Interfaces.cs" />
+    <Compile Include="LoggingRepository.cs" />
     <Compile Include="SAPImportRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WCSalesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Model.csproj">

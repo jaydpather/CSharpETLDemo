@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Input\Input.csproj">
+    <ProjectReference Include="..\Input\Data.csproj">
       <Project>{7b5ff160-38da-403e-acf5-f9cdab89655c}</Project>
-      <Name>Input</Name>
+      <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Model.csproj">
       <Project>{94bb979e-8a20-4110-8ebb-77440679f6fa}</Project>

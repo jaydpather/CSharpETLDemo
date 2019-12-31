@@ -1,16 +1,26 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Input
+namespace Data
 {
-    internal class SAPImportRepository : ICustomerImportRepository
+    internal class SAPImportRepository : ICustomerInputRepository
     {
+        private string _connectionString;
+
+        public SAPImportRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public IEnumerable<SAPCustomer> LoadCustomers()
         {
+            
+
             throw new NotImplementedException();
         }
 

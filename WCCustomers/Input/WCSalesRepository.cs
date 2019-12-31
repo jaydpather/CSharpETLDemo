@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using Model;
 
-namespace Output
+namespace Data
 {
-    internal class WCSalesRepository
+    internal class WCSalesRepository : ICustomerOutputRepository
     {
         public void InsertCustomers(IEnumerable<WCCustomer> customers)
         {

@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logging
+namespace Data
 {
-    internal class LoggingRepository
+    internal class LoggingRepository : ILoggingRepository
     {
-        public void WriteLogEntry(string msg)
+        public void LogRecordsAttemptedToImport(IEnumerable<SAPCustomer> sapCustomers)
         {
 
         }
@@ -17,6 +18,5 @@ namespace Logging
         {
 
         }
-
     }
 }
