@@ -9,9 +9,9 @@ namespace Data
     //todo: different factories for input, output, and logging?
     public static class RepositoryFactory
     {
-        public static ICustomerInputRepository GetSAPImportRepository(string connectionString)
+        public static ICustomerInputRepository GetSAPImportRepository(string connectionStringSettingName)
         {
-            return new SAPImportRepository(connectionString);
+            return new SAPImportRepository(connectionStringSettingName);
         }
 
         public static ICustomerOutputRepository GetWCSalesRepository()

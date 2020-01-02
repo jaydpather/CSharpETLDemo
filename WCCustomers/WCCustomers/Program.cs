@@ -11,9 +11,7 @@ namespace WCCustomersImport
     {
         static void Main(string[] args)
         {
-            var sapImportConnectionString = ConfigurationManager.AppSettings["SAPImportConnectionString"];
-
-            var inputRepository = Data.RepositoryFactory.GetSAPImportRepository(sapImportConnectionString);
+            var inputRepository = Data.RepositoryFactory.GetSAPImportRepository("SAPImportConnectionString");
             var outputRepository = Data.RepositoryFactory.GetWCSalesRepository();
             var loggingRepository = Data.RepositoryFactory.GetLoggingRepository();
 
