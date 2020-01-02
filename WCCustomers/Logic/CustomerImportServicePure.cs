@@ -22,9 +22,27 @@ namespace Logic
             };
         }
 
-        public WCCustomer MapToWCCustomer(SAPCustomer sapCustomer)
+        public WCCustomer MapToWCCustomer(SAPCustomer sapCustomer, DateTime timestampOfBatch)
         {
-            throw new NotImplementedException();
+            //todo: use AutoMapper since most fields have the same names
+            return new WCCustomer
+            {
+                Id = sapCustomer.CustomerId ?? 0,
+                CustomerNumber = sapCustomer.CustomerNumber,
+                Address_CountryCode = sapCustomer.CountryCode,
+                Name = sapCustomer.Name,
+                Address_City = sapCustomer.City,
+                Address_PostalCode = sapCustomer.PostalCode,
+                Address_Region = sapCustomer.Region,
+                LanguageCode = sapCustomer.LanguageCode,
+                VATCode = sapCustomer.VATNumber,
+                IsActive = string.IsNullOrEmpty(sapCustomer.IsDeleted),
+                CompanyCode = sapCustomer.CompanyCode,
+                Address_CustomerType = sapCustomer.CustomerType,
+                Address_StreetHouseNumber = sapCustomer.StreetHouseNumber,
+                Phone = sapCustomer.Phone,
+                Timestamp = timestampOfBatch
+            };
         }
 
         public DateTime GetMinLogDateToKeep(DateTime currentDate, int daysToKeep)
