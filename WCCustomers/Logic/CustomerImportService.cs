@@ -31,6 +31,7 @@ namespace Logic
 
             var customersToWrite = _pureService.DetermineInsertOrUpdate(sapCustomers);
 
+            //todo: pure service mapping function should accept IEnumerable, not individual object
             var wcCustomersToInsert = customersToWrite.CustomersToInsert.Select(x => _pureService.MapToWCCustomer(x));
             var wcCustomersToUpdate = customersToWrite.CustomersToUpdate.Select(x => _pureService.MapToWCCustomer(x));
 
@@ -39,8 +40,8 @@ namespace Logic
 
             _loggingRepository.LogRecordsAttemptedToImport(sapCustomers);
 
-            var logDaysToKeep = ConfigurationManager.AppSettings["LogDaysToKeep"];
-            var minLogDateToKeep = _pureService.GetMinLogDateToKeep(DateTime.UtcNow, 30);
+            var logDaysToKeep = int.Parse(ConfigurationManager.AppSettings["LogDaysToKeep"]); //todo: error handling, TryParse
+            var minLogDateToKeep = _pureService.GetMinLogDateToKeep(DateTime.UtcNow, logDaysToKeep);
             _loggingRepository.DeleteLogsOlderThan(minLogDateToKeep);
 
             //NO TRY/CATCH (to mimic existing sproc)
