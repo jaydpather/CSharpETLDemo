@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace Logic
 {
     public interface ICustomerImportService
     {
-        void ImportCustomers();
+        IEnumerable<SAPCustomer> ImportCustomers();
+    }
+
+    public interface ILoggingService
+    {
+        void LogCustomers(IEnumerable<SAPCustomer> sapCustomers);
     }
 }

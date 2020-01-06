@@ -56,7 +56,7 @@ namespace LogicTest
                 new SAPCustomer { Name = "abc3" },
             };
 
-            var results = _pureService.MapToWCCustomers(sapCustomers, DateTime.Now);
+            var results = _pureService.MapToWCCustomers(sapCustomers);
 
             Assert.AreEqual(sapCustomers.Count, results.Count());
         }
@@ -68,12 +68,10 @@ namespace LogicTest
             {
                 IsDeleted = ""
             };
-            var timestampOfBatch = DateTime.UtcNow;
 
-            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer, timestampOfBatch);
+            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer);
 
             Assert.IsTrue(wcCustomer.IsActive);
-            Assert.AreEqual(timestampOfBatch, wcCustomer.Timestamp);
         }
 
         [TestMethod]
@@ -83,12 +81,10 @@ namespace LogicTest
             {
                 IsDeleted = null
             };
-            var timestampOfBatch = DateTime.UtcNow;
 
-            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer, timestampOfBatch);
+            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer);
 
             Assert.IsTrue(wcCustomer.IsActive);
-            Assert.AreEqual(timestampOfBatch, wcCustomer.Timestamp);
         }
 
         [TestMethod]
@@ -98,12 +94,10 @@ namespace LogicTest
             {
                 IsDeleted = "a"
             };
-            var timestampOfBatch = DateTime.UtcNow;
 
-            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer, timestampOfBatch);
+            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer);
 
             Assert.IsFalse(wcCustomer.IsActive);
-            Assert.AreEqual(timestampOfBatch, wcCustomer.Timestamp);
         }
 
         [TestMethod]
@@ -113,12 +107,10 @@ namespace LogicTest
             {
                 CustomerId = null
             };
-            var timestampOfBatch = DateTime.UtcNow;
-
-            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer, timestampOfBatch);
+            
+            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer);
 
             Assert.AreEqual(0, wcCustomer.Id);
-            Assert.AreEqual(timestampOfBatch, wcCustomer.Timestamp);
         }
 
         [TestMethod]
@@ -128,12 +120,10 @@ namespace LogicTest
             {
                 CustomerId = 1
             };
-            var timestampOfBatch = DateTime.UtcNow;
 
-            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer, timestampOfBatch);
+            var wcCustomer = _pureService.MapToWCCustomer(sapCustomer);
 
             Assert.AreEqual(sapCustomer.CustomerId, wcCustomer.Id);
-            Assert.AreEqual(timestampOfBatch, wcCustomer.Timestamp);
         }
     }
 }

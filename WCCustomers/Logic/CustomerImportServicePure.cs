@@ -22,12 +22,12 @@ namespace Logic
             };
         }
 
-        public IEnumerable<WCCustomer> MapToWCCustomers(IEnumerable<SAPCustomer> sapCustomer, DateTime timeStampOfBatch)
+        public IEnumerable<WCCustomer> MapToWCCustomers(IEnumerable<SAPCustomer> sapCustomer)
         {
-            return sapCustomer.Select(x => MapToWCCustomer(x, timeStampOfBatch));
+            return sapCustomer.Select(x => MapToWCCustomer(x));
         }
 
-        public WCCustomer MapToWCCustomer(SAPCustomer sapCustomer, DateTime timestampOfBatch)
+        public WCCustomer MapToWCCustomer(SAPCustomer sapCustomer)
         {
             //many fields have different names, so not using auto mapper
             return new WCCustomer
@@ -45,14 +45,8 @@ namespace Logic
                 CompanyCode = sapCustomer.CompanyCode,
                 Address_CustomerType = sapCustomer.CustomerType,
                 Address_StreetHouseNumber = sapCustomer.StreetHouseNumber,
-                Phone = sapCustomer.Phone,
-                Timestamp = timestampOfBatch
+                Phone = sapCustomer.Phone
             };
-        }
-
-        public DateTime GetMinLogDateToKeep(DateTime currentDate, int daysToKeep)
-        {
-            return currentDate.AddDays(-daysToKeep);
         }
     }
 

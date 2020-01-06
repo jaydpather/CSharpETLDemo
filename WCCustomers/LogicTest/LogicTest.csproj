@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="CustomerImportServicePureTest.cs" />
     <Compile Include="CustomerImportServiceTest.cs" />
+    <Compile Include="LoggingServicePureTest.cs" />
+    <Compile Include="LoggingServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

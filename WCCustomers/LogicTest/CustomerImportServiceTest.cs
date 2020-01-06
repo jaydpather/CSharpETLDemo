@@ -14,28 +14,28 @@ namespace LogicTest
         private ICustomerImportService _customerImportService;
         private ICustomerInputRepository _inputRepository;
         private ICustomerOutputRepository _outputRepository;
-        private ILoggingRepository _loggingRepository;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _inputRepository = Substitute.For<ICustomerInputRepository>();
             _outputRepository = Substitute.For<ICustomerOutputRepository>();
-            _loggingRepository = Substitute.For<ILoggingRepository>();
 
-            _customerImportService = ServiceFactory.CreateCustomerImportService(_inputRepository, _outputRepository, _loggingRepository);
+            _customerImportService = ServiceFactory.CreateCustomerImportService(_inputRepository, _outputRepository);
         }
 
         [TestMethod]
         public void ImportCustomers_InsertAndUpdate()
         {
-            _inputRepository.LoadCustomers().Returns(new List<SAPCustomer>
+            var loadedCustomers = new List<SAPCustomer>
             {
                 new SAPCustomer{ CustomerId = null }, //should insert b/c CustomerId is null
                 new SAPCustomer{ CustomerId = 1 } //should update b/c CustomerId is not null
-            });
+            };
 
-            _customerImportService.ImportCustomers();
+            _inputRepository.LoadCustomers().Returns(loadedCustomers);
+
+            var result = _customerImportService.ImportCustomers();
 
             _inputRepository.Received(1).LoadCustomers();
             _outputRepository.ReceivedWithAnyArgs(1).InsertCustomers(null);
@@ -44,8 +44,7 @@ namespace LogicTest
             //b/c we have another UT for CustomerImportServicePure.DetermineInsertOrUpdate()
             //it would take more mocking and knowledge of NUnit to check that the methods were called with the correct param values.
 
-            _loggingRepository.ReceivedWithAnyArgs(1).LogRecordsAttemptedToImport(null);
-            _loggingRepository.ReceivedWithAnyArgs(1).DeleteLogsOlderThan(DateTime.MinValue);
+            Assert.AreEqual(loadedCustomers, result); //we should return all customers that were loaded (because that's what we want to log)
         }
     }
 }

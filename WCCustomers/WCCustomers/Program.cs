@@ -13,11 +13,15 @@ namespace WCCustomersImport
         {
             var inputRepository = Data.RepositoryFactory.GetSAPImportRepository("SAPImportConnectionString");
             var outputRepository = Data.RepositoryFactory.GetWCSalesRepository();
+            var importService = Logic.ServiceFactory.CreateCustomerImportService(inputRepository, outputRepository);
+
+            var logRecords = importService.ImportCustomers();
+
             var loggingRepository = Data.RepositoryFactory.GetLoggingRepository();
+            var logDaysToKeep = int.Parse(ConfigurationManager.AppSettings["LogDaysToKeep"]); //todo: error handling, TryParse
+            var loggingService = Logic.ServiceFactory.CreateLoggingService(loggingRepository, DateTime.UtcNow, logDaysToKeep);
 
-            var importService = Logic.ServiceFactory.CreateCustomerImportService(inputRepository, outputRepository, loggingRepository);
-
-            importService.ImportCustomers();
+            loggingService.LogCustomers(logRecords);
         }
     }
 }

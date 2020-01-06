@@ -9,9 +9,14 @@ namespace Logic
 {
     public static class ServiceFactory
     {
-        public static ICustomerImportService CreateCustomerImportService(ICustomerInputRepository inputRepository, ICustomerOutputRepository outputRepository, ILoggingRepository loggingRepository)
+        public static ICustomerImportService CreateCustomerImportService(ICustomerInputRepository inputRepository, ICustomerOutputRepository outputRepository)
         {
-            return new CustomerImportService(inputRepository, outputRepository, loggingRepository);
+            return new CustomerImportService(inputRepository, outputRepository);
+        }
+
+        public static ILoggingService CreateLoggingService(ILoggingRepository loggingRepository, DateTime timestampOfBatch, int logDaysToKeep)
+        {
+            return new LoggingService(loggingRepository, timestampOfBatch, logDaysToKeep);
         }
     }
 }

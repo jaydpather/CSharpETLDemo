@@ -19,7 +19,6 @@ namespace Model
         public string VATNumber { get; set; }
         public string StreetHouseNumber { get; set; }
         public string Phone { get; set; }
-        public DateTime? Timestamp { get; set; }
         public string IsDeleted { get; set; }
         public string CompanyCode { get; set; }
         public string CustomerType { get; set; }

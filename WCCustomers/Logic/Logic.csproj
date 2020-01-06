@@ -46,6 +46,8 @@
     <Compile Include="CustomerImportServicePure.cs" />
     <Compile Include="Factories.cs" />
     <Compile Include="Interfaces.cs" />
+    <Compile Include="LoggingService.cs" />
+    <Compile Include="LoggingServicePure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
