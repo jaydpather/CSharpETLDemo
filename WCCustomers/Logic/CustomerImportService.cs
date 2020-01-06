@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    //todo: this should also be an internal class, accessed through a factory.
-    //that way, you can unit test the caller
-    //(the caller should not be the entry point of the app)
-    public class CustomerImportService
+    internal class CustomerImportService : ICustomerImportService
     {
         private ICustomerInputRepository _inputRepository;
         private ICustomerOutputRepository _outputRepository;

@@ -11,7 +11,7 @@ namespace LogicTest
     [TestClass]
     public class CustomerImportServiceTest
     {
-        private CustomerImportService _customerImportService;
+        private ICustomerImportService _customerImportService;
         private ICustomerInputRepository _inputRepository;
         private ICustomerOutputRepository _outputRepository;
         private ILoggingRepository _loggingRepository;
@@ -23,7 +23,7 @@ namespace LogicTest
             _outputRepository = Substitute.For<ICustomerOutputRepository>();
             _loggingRepository = Substitute.For<ILoggingRepository>();
 
-            _customerImportService = new CustomerImportService(_inputRepository, _outputRepository, _loggingRepository);
+            _customerImportService = ServiceFactory.CreateCustomerImportService(_inputRepository, _outputRepository, _loggingRepository);
         }
 
         [TestMethod]

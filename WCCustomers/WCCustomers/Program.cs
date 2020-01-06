@@ -15,7 +15,7 @@ namespace WCCustomersImport
             var outputRepository = Data.RepositoryFactory.GetWCSalesRepository();
             var loggingRepository = Data.RepositoryFactory.GetLoggingRepository();
 
-            var importService = new Logic.CustomerImportService(inputRepository, outputRepository, loggingRepository);
+            var importService = Logic.ServiceFactory.CreateCustomerImportService(inputRepository, outputRepository, loggingRepository);
 
             importService.ImportCustomers();
         }
