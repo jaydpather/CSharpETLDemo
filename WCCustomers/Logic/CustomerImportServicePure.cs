@@ -24,7 +24,7 @@ namespace Logic
 
         public WCCustomer MapToWCCustomer(SAPCustomer sapCustomer, DateTime timestampOfBatch)
         {
-            //todo: use AutoMapper since most fields have the same names
+            //many fields have different names, so not using auto mapper
             return new WCCustomer
             {
                 Id = sapCustomer.CustomerId ?? 0,

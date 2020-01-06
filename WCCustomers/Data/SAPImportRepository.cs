@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    //todo: maybe each repository should be its own project
+    //todo: each repository should be its own project
     //  * currently, if we are loading from different sources like EF, Oracle, txt file, etc, then we will reference the libaries for all those data sources in 1 project
     //  * seems cleaner to have projects that only reference the libraries they need
     internal class SAPImportRepository : ICustomerInputRepository
@@ -48,7 +48,6 @@ namespace Data
 	LEFT OUTER JOIN [WeConnectSales_TEST].[dbo].[Customers] C ON (C.CustomerNumber=CB.CustomerNumber COLLATE DATABASE_DEFAULT AND C.CompanyCode=CC.CompanyCode COLLATE DATABASE_DEFAULT)
 	WHERE CC.CompanyCode IN ('W031','TH31','INLC','TH90','TH47','CK07','CK47','PB31','3906','PVHE')";
 
-            //Todo: folder name of this project does not match project name
             using (var dbContext = new SAPImportDBContext(_connectionStringSettingName))
             {
                 return dbContext.Database.SqlQuery<SAPCustomer>(query).ToList();
@@ -63,7 +62,7 @@ namespace Data
         }
     }
 
-    //todo: different file? new folder?
+    //todo: move this class to a different file once each data source is its own project
     class SAPImportDBContext : DbContext
     {
         public SAPImportDBContext(string connectionStringSettingName)

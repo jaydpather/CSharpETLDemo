@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    //todo: different factories for input, output, and logging?
+    //todo: input, output, and logging will have different factories once they're moved to different projects
     public static class RepositoryFactory
     {
         public static ICustomerInputRepository GetSAPImportRepository(string connectionStringSettingName)
