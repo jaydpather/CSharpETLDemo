@@ -14,9 +14,9 @@ namespace Data
             return new SAPImportRepository(connectionStringSettingName);
         }
 
-        public static ICustomerOutputRepository GetWCSalesRepository()
+        public static ICustomerOutputRepository GetWCSalesRepository(string connectionStringName)
         {
-            return new WCSalesRepository();
+            return new WCSalesRepository(connectionStringName);
         }
 
         public static ILoggingRepository GetLoggingRepository()

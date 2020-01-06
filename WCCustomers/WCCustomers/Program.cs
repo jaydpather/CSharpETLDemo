@@ -12,7 +12,7 @@ namespace WCCustomersImport
         static void Main(string[] args)
         {
             var inputRepository = Data.RepositoryFactory.GetSAPImportRepository("SAPImportConnectionString");
-            var outputRepository = Data.RepositoryFactory.GetWCSalesRepository();
+            var outputRepository = Data.RepositoryFactory.GetWCSalesRepository("WCSalesConnectionString");
             var importService = Logic.ServiceFactory.CreateCustomerImportService(inputRepository, outputRepository);
 
             var logRecords = importService.ImportCustomers();

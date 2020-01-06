@@ -14,7 +14,6 @@ namespace Data
     //  * seems cleaner to have projects that only reference the libraries they need
     internal class SAPImportRepository : ICustomerInputRepository
     {
-        //SAPImportDBContext _dbContext;
         string _connectionStringSettingName;
 
         public SAPImportRepository(string connectionStringSettingName)
@@ -28,6 +27,7 @@ namespace Data
 
         public IEnumerable<SAPCustomer> LoadCustomers()
         {
+            //todo: WCSales DB name should not be hard coded
             var query = @"SELECT LTRIM(RTRIM(CAST(CB.[CustomerNumber] AS NVARCHAR(10)))) AS [CustomerNumber]
       ,CB.[CountryCode]
       ,CB.[Name]
@@ -45,7 +45,7 @@ namespace Data
 	  ,C.[Id] As CustomerId  
 	FROM [dbo].[CustomerBasic] CB
 	INNER JOIN [dbo].[CustomerCompany] CC ON CC.CustomerNumber=CB.CustomerNumber COLLATE DATABASE_DEFAULT
-	LEFT OUTER JOIN [WeConnectSales_TEST].[dbo].[Customers] C ON (C.CustomerNumber=CB.CustomerNumber COLLATE DATABASE_DEFAULT AND C.CompanyCode=CC.CompanyCode COLLATE DATABASE_DEFAULT)
+	LEFT OUTER JOIN [WeConnectSales_Monkey].[dbo].[Customers] C ON (C.CustomerNumber=CB.CustomerNumber COLLATE DATABASE_DEFAULT AND C.CompanyCode=CC.CompanyCode COLLATE DATABASE_DEFAULT)
 	WHERE CC.CompanyCode IN ('W031','TH31','INLC','TH90','TH47','CK07','CK47','PB31','3906','PVHE')";
 
             using (var dbContext = new SAPImportDBContext(_connectionStringSettingName))
