@@ -38,10 +38,9 @@ namespace Logic
             //  (but then the timestamps of a single batch wouldn't match)
             var timeStampOfBatch = DateTime.UtcNow; //todo: shouldn't this be passed in from constructor?
 
-            //todo: pure service mapping function should accept IEnumerable, not individual object
-            //Note: another benefit of using a pure layer is better unit testing. This UT passes even if MapToCustomer throws an exception. Why? b/c the mocked repository doesn't do anything with its parameters, so the query is never evaluated
-            var wcCustomersToInsert = customersToWrite.CustomersToInsert.Select(x => _pureService.MapToWCCustomer(x, timeStampOfBatch));
-            var wcCustomersToUpdate = customersToWrite.CustomersToUpdate.Select(x => _pureService.MapToWCCustomer(x, timeStampOfBatch));
+            //Note: another benefit of using a pure layer is better unit testing. This UT passes even if MapToCustomer throws NotImplementedException. Why? b/c the mocked repository doesn't do anything with its parameters, so the query is never evaluated
+            var wcCustomersToInsert = _pureService.MapToWCCustomers(customersToWrite.CustomersToInsert, timeStampOfBatch);
+            var wcCustomersToUpdate = _pureService.MapToWCCustomers(customersToWrite.CustomersToUpdate, timeStampOfBatch);
 
             _outputRepository.InsertCustomers(wcCustomersToInsert);
             _outputRepository.UpdateCustomers(wcCustomersToUpdate);

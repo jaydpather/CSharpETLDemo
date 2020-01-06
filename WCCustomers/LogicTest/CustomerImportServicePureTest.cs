@@ -47,6 +47,21 @@ namespace LogicTest
         }
 
         [TestMethod]
+        public void MapToWCCustomers()
+        {
+            var sapCustomers = new List<SAPCustomer>
+            {
+                new SAPCustomer { Name = "abc1" },
+                new SAPCustomer { Name = "abc2" },
+                new SAPCustomer { Name = "abc3" },
+            };
+
+            var results = _pureService.MapToWCCustomers(sapCustomers, DateTime.Now);
+
+            Assert.AreEqual(sapCustomers.Count, results.Count());
+        }
+
+        [TestMethod]
         public void MapToWCCustomer_NotDeleted_EmptyString()
         {
             var sapCustomer = new SAPCustomer

@@ -22,6 +22,11 @@ namespace Logic
             };
         }
 
+        public IEnumerable<WCCustomer> MapToWCCustomers(IEnumerable<SAPCustomer> sapCustomer, DateTime timeStampOfBatch)
+        {
+            return sapCustomer.Select(x => MapToWCCustomer(x, timeStampOfBatch));
+        }
+
         public WCCustomer MapToWCCustomer(SAPCustomer sapCustomer, DateTime timestampOfBatch)
         {
             //many fields have different names, so not using auto mapper
