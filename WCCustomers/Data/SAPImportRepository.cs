@@ -28,6 +28,7 @@ namespace Data
         public IEnumerable<SAPCustomer> LoadCustomers()
         {
             //todo: WCSales DB name should not be hard coded
+            //  in fact, we don't even need to reference the WC Sales DB here. We should just use SQL MERGE or IF NOT EXISTS on the WC Sales DB
             var query = @"SELECT LTRIM(RTRIM(CAST(CB.[CustomerNumber] AS NVARCHAR(10)))) AS [CustomerNumber]
       ,CB.[CountryCode]
       ,CB.[Name]
